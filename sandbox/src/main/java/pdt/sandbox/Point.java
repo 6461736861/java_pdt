@@ -6,8 +6,6 @@ import static pdt.sandbox.MyFirstProgram.distance;
 import static pdt.sandbox.MyFirstProgram.showValues;
 
 public class Point {
-    public double p1;
-    public double p2;
     int x1;
     int x2;
     int y1;
