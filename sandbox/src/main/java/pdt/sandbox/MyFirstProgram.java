@@ -1,14 +1,12 @@
 package pdt.sandbox;
 
-import java.util.Scanner;
 public class MyFirstProgram {
-
-
     public static void main(String[] args) {
-        Point p = new Point();
-        p.setPoint();
-        p.printPoint();
-        p.distanceBetweenPoints();
-    }
-
+        Point p1 = new Point(1,2);
+        Point p2 = new Point (5,4);
+       // System.out.println("d = " );
+        double d;
+        d = p1.distance(p2);
+        System.out.println("d = "+ d);
+        }
 }
