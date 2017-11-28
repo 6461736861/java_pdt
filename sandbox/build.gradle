@@ -1,4 +1,4 @@
 apply plugin: 'java'
-
 apply plugin: 'application'
-mainClassName = "MyFirstProgram"
+mainClassName = "pdt.sandbox.MyFirstProgram"
+compile 'org.testng:testng:6.13.1'
