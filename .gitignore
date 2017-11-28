@@ -1,6 +1,8 @@
 .gradle
 /build/
-
+/sanbox/out
+/sanbox/build
+/.idea
 # Ignore Gradle GUI config
 gradle-app.setting
 
