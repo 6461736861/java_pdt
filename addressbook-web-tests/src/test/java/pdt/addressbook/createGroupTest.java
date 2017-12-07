@@ -21,7 +21,7 @@ public class createGroupTest {
         login("admin", "secret");
     }
 
-    private void login(String username, String password) {
+    public void login(String username, String password) {
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("pass")).click();
         wd.findElement(By.name("user")).sendKeys(username);
