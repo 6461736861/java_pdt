@@ -91,4 +91,40 @@ public class TestBase {
     public void tearDown() {
         wd.quit();
     }
+
+    protected void goToGroupPage() {
+        wd.findElement(By.linkText("groups")).click();
+    }
+
+    protected void returnToGroupPage() {
+        wd.findElement(By.linkText("group page")).click();
+    }
+
+    protected void submitGroupCreation() {
+        wd.findElement(By.name("submit")).click();
+    }
+
+    protected void fillGroupForm(GroupData groupData) {
+        wd.findElement(By.name("group_name")).click();
+        wd.findElement(By.name("group_name")).clear();
+        wd.findElement(By.name("group_name")).sendKeys(groupData.getGroupName());
+        wd.findElement(By.name("group_header")).click();
+        wd.findElement(By.name("group_header")).clear();
+        wd.findElement(By.name("group_header")).sendKeys(groupData.getGroupHeader());
+        wd.findElement(By.name("group_footer")).click();
+        wd.findElement(By.name("group_footer")).clear();
+        wd.findElement(By.name("group_footer")).sendKeys(groupData.getGroupFooter());
+    }
+
+    protected void initGroup() {
+        wd.findElement(By.name("new")).click();
+    }
+
+    protected void deleteSelectedGroups() {
+        wd.findElement(By.name("delete")).click();
+    }
+
+    protected void selectGroup() {
+        wd.findElement(By.name("selected[]")).click();
+    }
 }
