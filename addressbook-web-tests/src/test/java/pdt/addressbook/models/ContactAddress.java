@@ -1,4 +1,4 @@
-package pdt.addressbook;
+package pdt.addressbook.models;
 
 public class ContactAddress {
     private final String companyName;
