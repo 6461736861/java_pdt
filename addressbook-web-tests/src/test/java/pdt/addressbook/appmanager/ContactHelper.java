@@ -13,6 +13,7 @@ public class ContactHelper extends BaseHelper {
     public ContactHelper(FirefoxDriver wd) {
         super(wd);
     }
+
     public void initCreatContact() {
         click(By.linkText("add new"));
     }
@@ -32,23 +33,23 @@ public class ContactHelper extends BaseHelper {
 
     public void fillContactPersonalData(ContactAddress contactAddress) {
         click(By.name("company"));
-        wd.findElement(By.name("company")).sendKeys(contactAddress.getCompanyName());
+        typeFieldValue(By.name("company"), contactAddress.getCompanyName());
         click(By.name("address"));
-        wd.findElement(By.name("address")).sendKeys(contactAddress.getContactStreet());
+        typeFieldValue(By.name("address"), contactAddress.getContactStreet());
         click(By.name("home"));
-        wd.findElement(By.name("home")).sendKeys(contactAddress.getContactPhone());
+        typeFieldValue(By.name("home"), contactAddress.getContactPhone());
         click(By.name("email"));
-        wd.findElement(By.name("email")).sendKeys(contactAddress.getContactEmail());
+        typeFieldValue(By.name("email"), contactAddress.getContactEmail());
     }
 
     public void fillContactNameSurnameSalutation(ContactNameSurname contactNameSurname) {
         click(By.name("firstname"));
-        wd.findElement(By.name("firstname")).sendKeys(contactNameSurname.getContactName());
+        typeFieldValue(By.name("firstname"), contactNameSurname.getContactName());
         click(By.name("lastname"));
-        wd.findElement(By.name("lastname")).sendKeys(contactNameSurname.getContactSurname());
+        typeFieldValue(By.name("lastname"), contactNameSurname.getContactSurname());
         click(By.name("nickname"));
-        wd.findElement(By.name("nickname")).sendKeys(contactNameSurname.getContactNickname());
+        typeFieldValue(By.name("nickname"), contactNameSurname.getContactNickname());
         click(By.name("title"));
-        wd.findElement(By.name("title")).sendKeys(contactNameSurname.getSalutation());
+        typeFieldValue(By.name("title"), contactNameSurname.getSalutation());
     }
 }

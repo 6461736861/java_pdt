@@ -23,9 +23,9 @@ public class GroupHelper extends BaseHelper {
 
     public void fillGroupForm(GroupData groupData) {
 
-        typeGroupName(By.name("group_name"), groupData.getGroupName());
-        typeGroupName(By.name("group_header"), groupData.getGroupHeader());
-        typeGroupName(By.name("group_footer"), groupData.getGroupFooter());
+        typeFieldValue(By.name("group_name"), groupData.getGroupName());
+        typeFieldValue(By.name("group_header"), groupData.getGroupHeader());
+        typeFieldValue(By.name("group_footer"), groupData.getGroupFooter());
     }
 
     public void initGroup() {

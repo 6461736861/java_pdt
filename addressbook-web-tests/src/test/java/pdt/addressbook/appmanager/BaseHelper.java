@@ -14,7 +14,7 @@ public class BaseHelper {
         this.wd = wd;
     }
 
-    protected void typeGroupName(By locator, String text) {
+    protected void typeFieldValue(By locator, String text) {
         wd.findElement(locator).click();
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
