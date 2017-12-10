@@ -8,48 +8,47 @@ import pdt.addressbook.models.ContactNameSurname;
 /**
  * Created by rb on 12/10/17.
  */
-public class ContactCreationHelper {
-    private FirefoxDriver wd;
+public class ContactHelper extends BaseHelper {
 
-    public ContactCreationHelper(FirefoxDriver wd) {
-        this.wd = wd;
+    public ContactHelper(FirefoxDriver wd) {
+        super(wd);
     }
     public void initCreatContact() {
-        wd.findElement(By.linkText("add new")).click();
+        click(By.linkText("add new"));
     }
 
     public void fillCOntactBirthDate() {
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[17]")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[17]")).click();
+            click(By.xpath("//div[@id='content']/form/select[1]//option[17]"));
         }
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[3]")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[3]")).click();
+            click(By.xpath("//div[@id='content']/form/select[2]//option[3]"));
         }
-        wd.findElement(By.name("byear")).click();
+        click(By.name("byear"));
         wd.findElement(By.name("byear")).clear();
         wd.findElement(By.name("byear")).sendKeys("1990");
-        wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     public void fillContactPersonalData(ContactAddress contactAddress) {
-        wd.findElement(By.name("company")).click();
+        click(By.name("company"));
         wd.findElement(By.name("company")).sendKeys(contactAddress.getCompanyName());
-        wd.findElement(By.name("address")).click();
+        click(By.name("address"));
         wd.findElement(By.name("address")).sendKeys(contactAddress.getContactStreet());
-        wd.findElement(By.name("home")).click();
+        click(By.name("home"));
         wd.findElement(By.name("home")).sendKeys(contactAddress.getContactPhone());
-        wd.findElement(By.name("email")).click();
+        click(By.name("email"));
         wd.findElement(By.name("email")).sendKeys(contactAddress.getContactEmail());
     }
 
     public void fillContactNameSurnameSalutation(ContactNameSurname contactNameSurname) {
-        wd.findElement(By.name("firstname")).click();
+        click(By.name("firstname"));
         wd.findElement(By.name("firstname")).sendKeys(contactNameSurname.getContactName());
-        wd.findElement(By.name("lastname")).click();
+        click(By.name("lastname"));
         wd.findElement(By.name("lastname")).sendKeys(contactNameSurname.getContactSurname());
-        wd.findElement(By.name("nickname")).click();
+        click(By.name("nickname"));
         wd.findElement(By.name("nickname")).sendKeys(contactNameSurname.getContactNickname());
-        wd.findElement(By.name("title")).click();
+        click(By.name("title"));
         wd.findElement(By.name("title")).sendKeys(contactNameSurname.getSalutation());
     }
 }

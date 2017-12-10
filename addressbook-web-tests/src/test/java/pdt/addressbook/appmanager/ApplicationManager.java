@@ -1,10 +1,6 @@
 package pdt.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pdt.addressbook.models.ContactAddress;
-import pdt.addressbook.models.ContactNameSurname;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,16 +12,7 @@ public class ApplicationManager{
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
-    private ContactCreationHelper contactCreationHelper;
-
-    /*public static boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }*/
+    private ContactHelper contactHelper;
 
     public void init() {
 
@@ -35,7 +22,7 @@ public class ApplicationManager{
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
-        contactCreationHelper = new ContactCreationHelper(wd);
+        contactHelper = new ContactHelper(wd);
         wd.get("http://localhost:81/addressbook/");
         sessionHelper.login("admin", "secret");
     }
@@ -55,7 +42,7 @@ public class ApplicationManager{
     public SessionHelper getSessionHelper() {
         return sessionHelper;
     }
-    public ContactCreationHelper getContactCreationHelper() {
-        return contactCreationHelper;
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 }
