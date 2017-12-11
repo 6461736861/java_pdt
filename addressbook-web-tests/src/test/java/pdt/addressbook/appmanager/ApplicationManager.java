@@ -23,7 +23,8 @@ public class ApplicationManager{
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
-        wd.get("http://localhost:81/addressbook/");
+       // wd.get("http://localhost:81/addressbook/");
+        wd.get("http://localhost/addressbook/");
         sessionHelper.login("admin", "secret");
     }
 

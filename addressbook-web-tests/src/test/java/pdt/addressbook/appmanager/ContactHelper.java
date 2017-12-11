@@ -52,4 +52,17 @@ public class ContactHelper extends BaseHelper {
         click(By.name("title"));
         typeFieldValue(By.name("title"), contactNameSurname.getSalutation());
     }
+
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void modifyContact() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+
+    }
+
+    public void saveContactChanges() {
+        click(By.name("update"));
+    }
 }
