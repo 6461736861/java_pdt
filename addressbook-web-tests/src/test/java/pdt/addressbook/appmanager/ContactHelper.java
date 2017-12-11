@@ -65,4 +65,9 @@ public class ContactHelper extends BaseHelper {
     public void saveContactChanges() {
         click(By.name("update"));
     }
+
+    public void deleteContact() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
 }
