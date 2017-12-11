@@ -1,6 +1,7 @@
 package pdt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pdt.addressbook.models.GroupData;
 
@@ -9,7 +10,7 @@ import pdt.addressbook.models.GroupData;
  */
 public class GroupHelper extends BaseHelper {
 
-    public GroupHelper(FirefoxDriver wd) {
+    public GroupHelper(WebDriver wd) {
         super(wd);
     }
 
