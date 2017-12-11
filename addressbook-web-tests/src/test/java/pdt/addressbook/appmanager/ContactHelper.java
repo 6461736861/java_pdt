@@ -70,4 +70,7 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//input[@value='Delete']"));
     }
 
+    public void saveContact() {
+        click(By.name("submit"));
+    }
 }

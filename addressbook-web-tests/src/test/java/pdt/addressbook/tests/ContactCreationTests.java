@@ -11,7 +11,7 @@ public class ContactCreationTests extends TestBase{
         app.getContactHelper().initCreatContact();
         app.getContactHelper().fillContactNameSurnameSalutation(new ContactNameSurname("Dasha", "Test", "nickname", "MS"));
         app.getContactHelper().fillContactPersonalData(new ContactAddress("someCompany", "Grafenberger Allee 222", "1111111", "dasha@gmail.com"));
-        app.getContactHelper().modifyContact();
+        app.getContactHelper().saveContact();
     }
 
 }
