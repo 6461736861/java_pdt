@@ -16,9 +16,13 @@ public class BaseHelper {
     }
 
     protected void typeFieldValue(By locator, String text) {
-        wd.findElement(locator).click();
-        wd.findElement(locator).clear();
-        wd.findElement(locator).sendKeys(text);
+        if(text !=null){
+            String existingText = wd.findElement(locator).getAttribute("value1");
+        if(!equals(existingText)) {
+            wd.findElement(locator).clear();
+            wd.findElement(locator).sendKeys(text);
+        }
+        }
     }
 
     protected void click(By locator) {

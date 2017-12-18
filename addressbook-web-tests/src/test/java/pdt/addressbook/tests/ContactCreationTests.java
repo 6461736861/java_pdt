@@ -1,10 +1,11 @@
 package pdt.addressbook.tests;
+
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactAddress;
 import pdt.addressbook.models.ContactNameSurname;
 
 
-public class ContactCreationTests extends TestBase{
+public class ContactCreationTests extends TestBase {
 
     @Test
     public void createContactTest() {

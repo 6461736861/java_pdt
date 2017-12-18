@@ -32,7 +32,8 @@ public class ApplicationManager {
             wd = new ChromeDriver();
         } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("/usr/lib/firefox-esr/firefox-esr"));
-        } else if (Objects.equals(browser, BrowserType.SAFARI)){
+        }
+        else if (Objects.equals(browser, BrowserType.SAFARI)){
             wd = new SafariDriver();
         }
 

@@ -2,9 +2,11 @@ package pdt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.SkipException;
 import pdt.addressbook.models.ContactAddress;
 import pdt.addressbook.models.ContactNameSurname;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by rb on 12/10/17.
@@ -55,7 +57,10 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void selectContact() {
-        click(By.name("selected[]"));
+       if (wd.findElements(By.name("selected[]")).size()!=0) {
+           click(By.name("selected[]"));
+        }
+        else throw new SkipException("element was not found");
     }
 
     public void modifyContact() {
