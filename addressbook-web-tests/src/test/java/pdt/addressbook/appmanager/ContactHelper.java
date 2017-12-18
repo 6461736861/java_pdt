@@ -57,10 +57,9 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void selectContact() {
-       if (wd.findElements(By.name("selected[]")).size()!=0) {
-           click(By.name("selected[]"));
-        }
-        else throw new SkipException("element was not found");
+        if (wd.findElements(By.name("selected[]")).size() != 0) {
+            click(By.name("selected[]"));
+        } else throw new SkipException("element was not found");
     }
 
     public void modifyContact() {

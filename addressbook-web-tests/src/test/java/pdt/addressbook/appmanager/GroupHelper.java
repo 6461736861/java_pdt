@@ -3,6 +3,7 @@ package pdt.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.SkipException;
 import pdt.addressbook.models.GroupData;
 
 /**
@@ -38,8 +39,11 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void selectGroup() {
-        click(By.name("selected[]"));
+        if (wd.findElements(By.name("selected[]")).size() != 0) {
+            click(By.name("selected[]"));
+        } else throw new SkipException("element was not found");
     }
+
 
     public void initGroupModification() {
         click(By.name("edit"));
