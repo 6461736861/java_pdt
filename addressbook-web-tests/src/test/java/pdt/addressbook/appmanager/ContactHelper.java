@@ -1,5 +1,6 @@
 package pdt.addressbook.appmanager;
 
+import org.omg.CORBA.TIMEOUT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.SkipException;
@@ -59,7 +60,12 @@ public class ContactHelper extends BaseHelper {
     public void selectContact() {
         if (wd.findElements(By.name("selected[]")).size() != 0) {
             click(By.name("selected[]"));
-        } else throw new SkipException("element was not found");
+        } else {
+            this.initCreatContact();
+            this.fillContactPersonalData(new ContactAddress("dsfdsffsd","sdffdsfdsf 534", "234234234243","werwerwre@sgfsgf."));
+            this.saveContact();
+            click(By.name("selected[]"));
+        }
     }
 
     public void modifyContact() {
