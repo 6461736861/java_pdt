@@ -41,7 +41,15 @@ public class GroupHelper extends BaseHelper {
     public void selectGroup() {
         if (wd.findElements(By.name("selected[]")).size() != 0) {
             click(By.name("selected[]"));
-        } else throw new SkipException("element was not found");
+        } else
+        {
+            this.initGroup();
+            this.fillGroupForm(new GroupData("create a new", "group if", "it doesnt exist"));
+            this.submitGroupCreation();
+            click(By.xpath(".//*[@id='content']/div/i/a"));
+            click(By.name("selected[]"));
+
+        }
     }
 
 

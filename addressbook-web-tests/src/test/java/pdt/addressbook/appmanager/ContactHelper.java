@@ -62,7 +62,7 @@ public class ContactHelper extends BaseHelper {
             click(By.name("selected[]"));
         } else {
             this.initCreatContact();
-            this.fillContactPersonalData(new ContactAddress("dsfdsffsd","sdffdsfdsf 534", "234234234243","werwerwre@sgfsgf."));
+            this.fillContactPersonalData(new ContactAddress("dsfdsffsd", "sdffdsfdsf 534", "234234234243", "werwerwre@sgfsgf."));
             this.saveContact();
             click(By.name("selected[]"));
         }
