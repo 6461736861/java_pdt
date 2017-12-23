@@ -3,6 +3,8 @@ package pdt.addressbook.appmanager;
 import org.omg.CORBA.TIMEOUT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.SkipException;
 import pdt.addressbook.models.ContactAddress;
 import pdt.addressbook.models.ContactNameSurname;
@@ -58,14 +60,7 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void selectContact() {
-        if (wd.findElements(By.name("selected[]")).size() != 0) {
-            click(By.name("selected[]"));
-        } else {
-            this.initCreatContact();
-            this.fillContactPersonalData(new ContactAddress("dsfdsffsd", "sdffdsfdsf 534", "234234234243", "werwerwre@sgfsgf."));
-            this.saveContact();
-            click(By.name("selected[]"));
-        }
+        click(By.name("selected[]"));
     }
 
     public void modifyContact() {
@@ -78,10 +73,20 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void deleteContact() {
+        new WebDriverWait(wd, 5).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//td[.='DeleteCustomer']"), "DeleteCustomer"));
+        click(By.name("selected[]"));
         click(By.xpath("//input[@value='Delete']"));
     }
 
     public void saveContact() {
         click(By.name("submit"));
+    }
+
+    public void createContact() {
+        this.initCreatContact();
+        this.fillContactNameSurnameSalutation(new ContactNameSurname("DeleteCustomer", "DeleteCustomer", "nickname1", "MS"));  //.fillContactPersonalData(new ContactAddress("dsfdsffsd", "sdffdsfdsf 534", "234234234243", "werwerwre@sgfsgf."));
+        this.fillContactPersonalData(new ContactAddress("dsfdsffsd", "sdffdsfdsf 534", "234234234243", "werwerwre@sgfsgf."));
+        this.saveContact();
+
     }
 }
