@@ -4,18 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import pdt.addressbook.models.ContactAddress;
-import pdt.addressbook.models.ContactNameSurname;
+import pdt.addressbook.models.ContactData;
 
 public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModitication() {
+        ContactData contact = new ContactData();
         contactHelper.selectContact();
         contactHelper.modifyContact();
-        contactHelper.fillContactNameSurnameSalutation(new ContactNameSurname("NEW NAME", "TEST", "NEW NICKNAME", "MS"));
-        contactHelper.fillContactPersonalData(new ContactAddress("newCompany", "BeachStreet", "3333", "sasdfkajhgdfj@fgfdg.sdf"));
-        contactHelper.fillCOntactBirthDate();
+        contactHelper.createContact(contact);//fillContact(new ContactNameSurname("NEW NAME", "TEST", "NEW NICKNAME", "MS"));
+       // contactHelper.fillContactPersonalData(new ContactAddress("newCompany", "BeachStreet", "3333", "sasdfkajhgdfj@fgfdg.sdf"));
+        contactHelper.fillContactBirthDate();
         contactHelper.saveContactChanges();
 
         WebDriverWait webDriverWait = new WebDriverWait(wd, 5);
