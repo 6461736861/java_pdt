@@ -3,8 +3,11 @@ package pdt.addressbook.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
+
+import java.util.UUID;
 
 public class ContactModificationTests extends TestBase {
 
@@ -13,8 +16,6 @@ public class ContactModificationTests extends TestBase {
         ContactData contact = new ContactData();
         contactHelper.selectContact();
         contactHelper.modifyContact();
-        contactHelper.createContact(contact);//fillContact(new ContactNameSurname("NEW NAME", "TEST", "NEW NICKNAME", "MS"));
-       // contactHelper.fillContactPersonalData(new ContactAddress("newCompany", "BeachStreet", "3333", "sasdfkajhgdfj@fgfdg.sdf"));
         contactHelper.fillContactBirthDate();
         contactHelper.saveContactChanges();
 
@@ -25,4 +26,17 @@ public class ContactModificationTests extends TestBase {
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
 
     }
+
+    @BeforeMethod
+    public void createContactIfDoesNotExist() {
+        if (!contactHelper.isAnyContactExists()) {
+            ContactData contact = new ContactData();
+            contact.name = "NAME";
+            contact.surname = "SURNAME";
+            contact.email = "newemail@gmail.com";
+            contact.title = "TITLE";
+            contactHelper.createContact(contact);
+        }
+    }
+
 }

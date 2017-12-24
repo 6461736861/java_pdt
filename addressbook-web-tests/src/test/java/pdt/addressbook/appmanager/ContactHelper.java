@@ -32,15 +32,6 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-//    public void fillContact(ContactData contact) {
-//        typeFieldValue(By.name("firstname"), contact.name);
-//        typeFieldValue(By.name("lastname"), contact.surname);
-//        typeFieldValue(By.name("nickname"), contact.nickname);
-//        typeFieldValue(By.name("title"), contact.title);
-//        typeFieldValue(By.name("company"), contact.companyName);
-//        typeFieldValue(By.name("email"), contact.email);
-//    }
-
     public void fillContact(ContactData contact) {
         typeFieldValue(By.name("firstname"), contact.name);
         typeFieldValue(By.name("lastname"), contact.surname);
