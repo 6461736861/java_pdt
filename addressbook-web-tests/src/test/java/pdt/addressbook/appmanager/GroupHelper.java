@@ -23,11 +23,10 @@ public class GroupHelper extends BaseHelper {
         click(By.name("submit"));
     }
 
-    public void fillGroupForm(GroupData groupData) {
-
-        typeFieldValue(By.name("group_name"), groupData.getGroupName());
-        typeFieldValue(By.name("group_header"), groupData.getGroupHeader());
-        typeFieldValue(By.name("group_footer"), groupData.getGroupFooter());
+    public void fillGroupForm(GroupData group) {
+        typeFieldValue(By.name("group_name"), group.group_name);
+        typeFieldValue(By.name("group_header"), group.group_header);
+        typeFieldValue(By.name("group_footer"), group.group_footer);
     }
 
     public void initGroup() {
@@ -39,17 +38,17 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void selectGroup() {
-        if (wd.findElements(By.name("selected[]")).size() != 0) {
-            click(By.name("selected[]"));
-        } else
-        {
-            this.initGroup();
-            this.fillGroupForm(new GroupData("create a new", "group if", "it doesnt exist"));
-            this.submitGroupCreation();
-            click(By.xpath(".//*[@id='content']/div/i/a"));
-            click(By.name("selected[]"));
-
-        }
+        // if (wd.findElements(By.name("selected[]")).size() != 0) {
+        click(By.name("selected[]"));
+//        } else
+//        {
+//            this.initGroup();
+//            this.fillGroupForm(new GroupData("create a new", "group if", "it doesnt exist"));
+//            this.submitGroupCreation();
+//            click(By.xpath(".//*[@id='content']/div/i/a"));
+//            click(By.name("selected[]"));
+//
+//        }
     }
 
 
@@ -59,5 +58,11 @@ public class GroupHelper extends BaseHelper {
 
     public void submitGroupModification() {
         click(By.name("update"));
+    }
+
+
+    public boolean isAnyGroupExists() {
+       // return !wd.findElement(By.name("selected[]")).getSize().equals(0);
+        return wd.findElements(By.name("selected[]")).size() == 0;
     }
 }
