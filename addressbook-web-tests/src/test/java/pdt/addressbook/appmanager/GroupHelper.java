@@ -1,10 +1,20 @@
 package pdt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.SkipException;
 import pdt.addressbook.models.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.openqa.selenium.By.name;
 
 /**
  * Created by rb on 12/10/17.
@@ -20,26 +30,26 @@ public class GroupHelper extends BaseHelper {
     }
 
     public void submitGroupCreation() {
-        click(By.name("submit"));
+        click(name("submit"));
     }
 
     public void fillGroupForm(GroupData group) {
-        typeFieldValue(By.name("group_name"), group.group_name);
-        typeFieldValue(By.name("group_header"), group.group_header);
-        typeFieldValue(By.name("group_footer"), group.group_footer);
+        typeFieldValue(name("group_name"), group.group_name);
+        typeFieldValue(name("group_header"), group.group_header);
+        typeFieldValue(name("group_footer"), group.group_footer);
     }
 
     public void initGroup() {
-        click(By.name("new"));
+        click(name("new"));
     }
 
     public void deleteSelectedGroups() {
-        click(By.name("delete"));
+        click(name("delete"));
     }
 
     public void selectGroup() {
         // if (wd.findElements(By.name("selected[]")).size() != 0) {
-        click(By.name("selected[]"));
+        click(name("selected[]"));
 //        } else
 //        {
 //            this.initGroup();
@@ -53,16 +63,19 @@ public class GroupHelper extends BaseHelper {
 
 
     public void initGroupModification() {
-        click(By.name("edit"));
+        click(name("edit"));
     }
 
     public void submitGroupModification() {
-        click(By.name("update"));
+        click(name("update"));
     }
 
 
     public boolean isAnyGroupExists() {
-       // return !wd.findElement(By.name("selected[]")).getSize().equals(0);
-        return wd.findElements(By.name("selected[]")).size() == 0;
+        return !(wd.findElements(By.cssSelector(".group")).size() == 0);
+
     }
+
+
 }
+
