@@ -16,8 +16,9 @@ public class GroupModificationTests extends TestBase {
         navigationHelper.goToGroupPage();
         groupHelper.selectGroup();
         groupHelper.initGroupModification();
+        group.group_name = String.format("MODIFIED%s", UUID.randomUUID());
         groupHelper.fillGroupForm(group);
-        
+
         groupHelper.submitGroupModification();
         WebDriverWait webDriverWait = new WebDriverWait(wd, 5);
         new WebDriverWait(wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group record has been updated.\n" + "return to the group page"));
