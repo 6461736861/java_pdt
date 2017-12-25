@@ -29,10 +29,9 @@ public class GroupModificationTests extends TestBase {
 
     @BeforeMethod
     public void createGroupIfDoesNotExist() {
-      //  if (!groupHelper.isAnyGroupExists()) {
-        if (wd.findElements(By.name("selected[]")).size() != 0){
+        navigationHelper.goToGroupPage();
+        if (!groupHelper.isAnyGroupExists()) {
             GroupData group = new GroupData();
-            navigationHelper.goToGroupPage();
             group.group_name = String.format("Group name%s", UUID.randomUUID());
             group.group_footer = String.format("Footer%s", UUID.randomUUID());
             group.group_header = String.format("Header%s", UUID.randomUUID());
