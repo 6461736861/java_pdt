@@ -1,13 +1,8 @@
 package pdt.addressbook.appmanager;
 
-import org.omg.CORBA.TIMEOUT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.SkipException;
-import pdt.addressbook.models.ContactAddress;
-import pdt.addressbook.models.ContactNameSurname;
-
-import java.util.concurrent.TimeUnit;
+import pdt.addressbook.models.ContactData;
 
 /**
  * Created by rb on 12/10/17.
@@ -18,11 +13,11 @@ public class ContactHelper extends BaseHelper {
         super(wd);
     }
 
-    public void initCreatContact() {
+    public void initCreateContact() {
         click(By.linkText("add new"));
     }
 
-    public void fillCOntactBirthDate() {
+    public void fillContactBirthDate() {
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[17]")).isSelected()) {
             click(By.xpath("//div[@id='content']/form/select[1]//option[17]"));
         }
@@ -35,37 +30,17 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void fillContactPersonalData(ContactAddress contactAddress) {
-        click(By.name("company"));
-        typeFieldValue(By.name("company"), contactAddress.getCompanyName());
-        click(By.name("address"));
-        typeFieldValue(By.name("address"), contactAddress.getContactStreet());
-        click(By.name("home"));
-        typeFieldValue(By.name("home"), contactAddress.getContactPhone());
-        click(By.name("email"));
-        typeFieldValue(By.name("email"), contactAddress.getContactEmail());
-    }
-
-    public void fillContactNameSurnameSalutation(ContactNameSurname contactNameSurname) {
-        click(By.name("firstname"));
-        typeFieldValue(By.name("firstname"), contactNameSurname.getContactName());
-        click(By.name("lastname"));
-        typeFieldValue(By.name("lastname"), contactNameSurname.getContactSurname());
-        click(By.name("nickname"));
-        typeFieldValue(By.name("nickname"), contactNameSurname.getContactNickname());
-        click(By.name("title"));
-        typeFieldValue(By.name("title"), contactNameSurname.getSalutation());
+    public void fillContact(ContactData contact) {
+        typeFieldValue(By.name("firstname"), contact.name);
+        typeFieldValue(By.name("lastname"), contact.surname);
+        typeFieldValue(By.name("nickname"), contact.nickname);
+        typeFieldValue(By.name("title"), contact.title);
+        typeFieldValue(By.name("company"), contact.companyName);
+        typeFieldValue(By.name("email"), contact.email);
     }
 
     public void selectContact() {
-        if (wd.findElements(By.name("selected[]")).size() != 0) {
-            click(By.name("selected[]"));
-        } else {
-            this.initCreatContact();
-            this.fillContactPersonalData(new ContactAddress("dsfdsffsd", "sdffdsfdsf 534", "234234234243", "werwerwre@sgfsgf."));
-            this.saveContact();
-            click(By.name("selected[]"));
-        }
+        click(By.name("selected[]"));
     }
 
     public void modifyContact() {
@@ -78,10 +53,25 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void deleteContact() {
+        // new WebDriverWait(wd, 5).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//td[.='DeleteCustomer']"), "DeleteCustomer"));
+        click(By.name("selected[]"));
         click(By.xpath("//input[@value='Delete']"));
     }
 
     public void saveContact() {
         click(By.name("submit"));
     }
+
+    public void createContact(ContactData contact) {
+        this.initCreateContact();
+        this.fillContact(contact);
+        this.saveContact();
+
+    }
+
+    public boolean isAnyContactExists() {
+        return !wd.findElement(By.id("search_count")).getText().contains("0");
+    }
+
+
 }
