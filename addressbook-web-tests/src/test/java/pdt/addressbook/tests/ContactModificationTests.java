@@ -7,8 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
 
-import java.util.UUID;
-
 public class ContactModificationTests extends TestBase {
 
     @Test
