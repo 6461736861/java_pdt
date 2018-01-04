@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
 
+import java.util.List;
 import java.util.UUID;
 
 public class DeleteContactTests extends TestBase {
@@ -27,7 +28,7 @@ public class DeleteContactTests extends TestBase {
 
     @Test
     public void testDeleteContact() {
-        int before = app.getContactHelper().getContactCount();
+        List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().deleteContact();
         app.getContactHelper().submitDeletionContact();
 
@@ -36,7 +37,7 @@ public class DeleteContactTests extends TestBase {
 
         webDriverWait.withMessage("User is not redirected to the homepage");
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before - 1);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1);
     }
 }

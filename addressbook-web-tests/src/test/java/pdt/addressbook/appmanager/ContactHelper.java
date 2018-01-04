@@ -2,7 +2,12 @@ package pdt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pdt.addressbook.models.ContactData;
+import pdt.addressbook.models.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rb on 12/10/17.
@@ -64,7 +69,7 @@ public class ContactHelper extends BaseHelper {
 
     public void createContact(ContactData contact) {
         this.initCreateContact();
-       this.fillContact(contact);
+        this.fillContact(contact);
         this.saveContact();
 
     }
@@ -76,5 +81,16 @@ public class ContactHelper extends BaseHelper {
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("selected[]"));
+        for (WebElement element : elements) {
+            String name = element.getText();
+            ContactData contact = new ContactData();
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }

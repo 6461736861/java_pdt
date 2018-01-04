@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.GroupData;
 
+import java.util.List;
 import java.util.UUID;
 
 public class GroupModificationTests extends TestBase {
@@ -17,7 +18,7 @@ public class GroupModificationTests extends TestBase {
 
         app.getNavigationHelper().goToGroupPage();
         //writing the amount of groups before modification action
-        int before = app.getGroupHelper().getGroupCount();
+        List<GroupData> before = app.getGroupHelper().getGroupList();
         //selecting the fist group in the list of groups
         app.getGroupHelper().selectGroup(1);
         app.getGroupHelper().initGroupModification();
@@ -34,8 +35,8 @@ public class GroupModificationTests extends TestBase {
         //checking that use was redirected to the group page
         webDriverWait.withMessage("User is not redirected to the group page");
         webDriverWait.until(ExpectedConditions.urlContains("group.php"));
-        int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(before, after);
+        List<GroupData> after = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(before.size(), after.size());
     }
 
     @BeforeMethod

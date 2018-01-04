@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.GroupData;
 
+import java.util.List;
 import java.util.UUID;
 
 public class GroupCreationTests extends TestBase {
@@ -18,7 +19,8 @@ public class GroupCreationTests extends TestBase {
         group.group_footer = String.format("Footer%s", UUID.randomUUID());
         group.group_header = String.format("Header%s", UUID.randomUUID());
         app.getNavigationHelper().goToGroupPage();
-        int before = app.getGroupHelper().getGroupCount();
+        List<GroupData> before = app.getGroupHelper().getGroupList();
+      //  int before = app.getGroupHelper().getGroupCount();
         app.getGroupHelper().initGroup();
         app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupCreation();
@@ -29,8 +31,8 @@ public class GroupCreationTests extends TestBase {
         app.getGroupHelper().returnToGroupPage();
         webDriverWait.withMessage("User is not redirected to the group page");
         webDriverWait.until(ExpectedConditions.urlContains("group.php"));
-        int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after, before+1);
+        List<GroupData> after = app.getGroupHelper().getGroupList();
+        Assert.assertEquals(after.size(), before.size()+1);
     }
 
 

@@ -8,12 +8,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
 
+import java.util.List;
+
 public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModitication() {
         ContactData contact = new ContactData();
-        int before = app.getContactHelper().getContactCount();
+        List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact();
         app.getContactHelper().modifyContact();
         app.getContactHelper().fillContactBirthDate();
@@ -24,8 +26,8 @@ public class ContactModificationTests extends TestBase {
 
         webDriverWait.withMessage("User is not redirected to the homepage");
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
-        int after = app.getContactHelper().getContactCount();
-        Assert.assertEquals(after, before);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size());
 
     }
 
