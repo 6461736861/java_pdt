@@ -33,4 +33,25 @@ public class GroupData {
     public String group_header;
     public String group_footer;
 
+    @Override
+    public String toString() {
+        return "GroupData{" +
+                "group_name='" + group_name + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GroupData groupData = (GroupData) o;
+
+        return group_name != null ? group_name.equals(groupData.group_name) : groupData.group_name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return group_name != null ? group_name.hashCode() : 0;
+    }
 }
