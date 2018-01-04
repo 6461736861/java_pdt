@@ -47,18 +47,8 @@ public class GroupHelper extends BaseHelper {
         click(name("delete"));
     }
 
-    public void selectGroup() {
-        // if (wd.findElements(By.name("selected[]")).size() != 0) {
-        click(name("selected[]"));
-//        } else
-//        {
-//            this.initGroup();
-//            this.fillGroupForm(new GroupData("create a new", "group if", "it doesnt exist"));
-//            this.submitGroupCreation();
-//            click(By.xpath(".//*[@id='content']/div/i/a"));
-//            click(By.name("selected[]"));
-//
-//        }
+    public void selectGroup(int index) {
+       wd.findElements(By.name("selected[]")).get(index).click();
     }
 
 

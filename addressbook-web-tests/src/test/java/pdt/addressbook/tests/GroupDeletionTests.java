@@ -18,7 +18,8 @@ public class GroupDeletionTests extends TestBase {
     public void testDeleteGroup() {
         app.getNavigationHelper().goToGroupPage();
         int before = app.getGroupHelper().getGroupCount();
-        app.getGroupHelper().selectGroup();
+        //selecting the last group to remove
+        app.getGroupHelper().selectGroup(before -1);
         app.getGroupHelper().deleteSelectedGroups();
         WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);
         new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group has been removed.\n" + "return to the group page"));
