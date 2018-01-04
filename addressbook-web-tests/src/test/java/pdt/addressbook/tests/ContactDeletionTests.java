@@ -12,7 +12,7 @@ import pdt.addressbook.models.ContactData;
 import java.util.List;
 import java.util.UUID;
 
-public class DeleteContactTests extends TestBase {
+public class ContactDeletionTests extends TestBase {
 
     @BeforeMethod
     public void createContactIfDoesNotExist() {
@@ -39,5 +39,9 @@ public class DeleteContactTests extends TestBase {
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        //check that lists before and after are equals
+        Assert.assertEquals(before, after);
     }
 }
