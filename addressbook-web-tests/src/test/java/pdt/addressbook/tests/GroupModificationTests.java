@@ -3,6 +3,7 @@ package pdt.addressbook.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.GroupData;
@@ -14,6 +15,7 @@ public class GroupModificationTests extends TestBase {
     public void testGroupModification() {
         GroupData group = new GroupData();
         app.getNavigationHelper().goToGroupPage();
+        int before = app.getGroupHelper().getGroupCount();
         app.getGroupHelper().selectGroup();
         app.getGroupHelper().initGroupModification();
         group.group_name = String.format("MODIFIED%s", UUID.randomUUID());
@@ -26,6 +28,8 @@ public class GroupModificationTests extends TestBase {
         app.getGroupHelper().returnToGroupPage();
         webDriverWait.withMessage("User is not redirected to the group page");
         webDriverWait.until(ExpectedConditions.urlContains("group.php"));
+        int after = app.getGroupHelper().getGroupCount();
+        Assert.assertEquals(before, after);
     }
 
     @BeforeMethod

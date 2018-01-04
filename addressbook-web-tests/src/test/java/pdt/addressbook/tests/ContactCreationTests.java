@@ -3,6 +3,7 @@ package pdt.addressbook.tests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
 
@@ -19,6 +20,7 @@ public class ContactCreationTests extends TestBase {
         contact.email = String.format("email%s@gmail.com", UUID.randomUUID());
         contact.title = String.format("Title%s", UUID.randomUUID());
         app.getContactHelper().createContact(contact);
+        int before = app.getContactHelper().getContactCount();
         app.getContactHelper().initCreateContact();
         app.getContactHelper().fillContact(new ContactData());
         app.getContactHelper().saveContact();
@@ -28,6 +30,8 @@ public class ContactCreationTests extends TestBase {
 
         webDriverWait.withMessage("User is not redirected to the homepage");
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
+        int after = app.getContactHelper().getContactCount();
+        Assert.assertEquals(after, before + 1);
     }
 
 }

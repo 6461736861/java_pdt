@@ -64,7 +64,7 @@ public class ContactHelper extends BaseHelper {
 
     public void createContact(ContactData contact) {
         this.initCreateContact();
-        this.fillContact(contact);
+       this.fillContact(contact);
         this.saveContact();
 
     }
@@ -74,4 +74,7 @@ public class ContactHelper extends BaseHelper {
     }
 
 
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
