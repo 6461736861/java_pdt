@@ -14,13 +14,12 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void testCreateGroup() {
-        GroupData group = new GroupData();
+        GroupData group = new GroupData(null, null, null);
         group.group_name = String.format("Group name%s", UUID.randomUUID());
         group.group_footer = String.format("Footer%s", UUID.randomUUID());
         group.group_header = String.format("Header%s", UUID.randomUUID());
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> before = app.getGroupHelper().getGroupList();
-      //  int before = app.getGroupHelper().getGroupCount();
         app.getGroupHelper().initGroup();
         app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupCreation();

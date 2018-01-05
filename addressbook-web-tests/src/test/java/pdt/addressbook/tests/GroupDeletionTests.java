@@ -20,7 +20,7 @@ public class GroupDeletionTests extends TestBase {
         app.getNavigationHelper().goToGroupPage();
         List<GroupData> before = app.getGroupHelper().getGroupList();
         //selecting the last group to remove
-        app.getGroupHelper().selectGroup(before.size() -1);
+        app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().deleteSelectedGroups();
         WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);
         new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group has been removed.\n" + "return to the group page"));
@@ -29,7 +29,7 @@ public class GroupDeletionTests extends TestBase {
         webDriverWait.withMessage("User is not redirected to the group page");
         webDriverWait.until(ExpectedConditions.urlContains("group.php"));
         List<GroupData> after = app.getGroupHelper().getGroupList();
-        Assert.assertEquals(after.size(), before.size()-1);
+        Assert.assertEquals(after.size(), before.size() - 1);
 
         before.remove(before.size() - 1);
         //check that lists before and after are equals
@@ -43,12 +43,7 @@ public class GroupDeletionTests extends TestBase {
         if (!app.getGroupHelper().isAnyGroupExists()) {
 
             app.getGroupHelper().initGroup();
-            GroupData group = new GroupData();
-            group.group_name = String.format("Group name%s", UUID.randomUUID());
-            group.group_footer = String.format("Footer%s", UUID.randomUUID());
-            group.group_header = String.format("Header%s", UUID.randomUUID());
-
-
+            GroupData group = new GroupData("test1", "test2", "test3");
             app.getGroupHelper().fillGroupForm(group);
             app.getGroupHelper().submitGroupCreation();
         }
