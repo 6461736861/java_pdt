@@ -32,7 +32,7 @@ public class GroupModificationTests extends TestBase {
         new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group record has been updated.\n" + "return to the group page"));
 
         app.getGroupHelper().returnToGroupPage();
-        //checking that use was redirected to the group page
+        //checking that user was redirected to the group page
         webDriverWait.withMessage("User is not redirected to the group page");
         webDriverWait.until(ExpectedConditions.urlContains("group.php"));
 

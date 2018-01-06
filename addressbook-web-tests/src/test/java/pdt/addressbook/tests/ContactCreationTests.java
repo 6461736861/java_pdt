@@ -16,15 +16,13 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void createContactTest() {
-        ContactData contact = new ContactData();
-        contact.name = String.format("Name%s", UUID.randomUUID());
-        contact.surname = String.format("Surname%s", UUID.randomUUID());
-        contact.email = String.format("email%s@gmail.com", UUID.randomUUID());
-        contact.title = String.format("Title%s", UUID.randomUUID());
-        app.getContactHelper().createContact(contact);
+       // ContactData contact = new ContactData(null, null, null, null);
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().initCreateContact();
-        app.getContactHelper().fillContact(new ContactData());
+        app.getContactHelper().fillContact(new ContactData(String.format("Name%s", UUID.randomUUID()),
+                String.format("Surname%s", UUID.randomUUID()),
+                String.format("email%s@gmail.com", UUID.randomUUID()),
+                String.format("Title%s", UUID.randomUUID())));
         app.getContactHelper().saveContact();
 
         WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);

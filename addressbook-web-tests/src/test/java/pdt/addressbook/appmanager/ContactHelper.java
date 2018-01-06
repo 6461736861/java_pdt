@@ -8,6 +8,7 @@ import pdt.addressbook.models.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by rb on 12/10/17.
@@ -78,17 +79,17 @@ public class ContactHelper extends BaseHelper {
         return !wd.findElement(By.id("search_count")).getText().contains("0");
     }
 
-
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("selected[]"));
+        List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
         for (WebElement element : elements) {
-            String name = element.getText();
-            ContactData contact = new ContactData();
+           // int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+            String id = element.findElement(By.tagName("input")).getAttribute("id");
+            ContactData contact = new ContactData(null, "modified", "modified", "modified2","asd", "sdads");
             contacts.add(contact);
         }
         return contacts;

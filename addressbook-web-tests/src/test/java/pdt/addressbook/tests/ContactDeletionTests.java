@@ -17,11 +17,10 @@ public class ContactDeletionTests extends TestBase {
     @BeforeMethod
     public void createContactIfDoesNotExist() {
         if (!app.getContactHelper().isAnyContactExists()) {
-            ContactData contact = new ContactData();
-            contact.name = String.format("Name%s", UUID.randomUUID());
-            contact.surname = String.format("Surname%s", UUID.randomUUID());
-            contact.email = String.format("email%s@gmail.com", UUID.randomUUID());
-            contact.title = String.format("Title%s", UUID.randomUUID());
+            ContactData contact = new ContactData(String.format("Name%s", UUID.randomUUID()),
+                    String.format("Surname%s", UUID.randomUUID()),
+                    String.format("email%s@gmail.com", UUID.randomUUID()),
+                    String.format("Title%s", UUID.randomUUID()));
             app.getContactHelper().createContact(contact);
         }
     }
