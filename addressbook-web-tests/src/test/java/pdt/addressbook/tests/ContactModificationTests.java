@@ -19,7 +19,7 @@ public class ContactModificationTests extends TestBase {
        // ContactData contact = new ContactData(null, null, null, null, null, null);
         List<ContactData> before = app.getContactHelper().getContactList();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(before.get(index).getId(), "modified", "modified", "modified2","asd", "sdads");
+        ContactData contact = new ContactData(before.get(index).getId(), "test1", "test2","test3", "test4");
         app.getContactHelper().selectContact();
         app.getContactHelper().modifyContact();
         app.getContactHelper().fillContact(contact); //.fillContactBirthDate();
@@ -42,7 +42,7 @@ public class ContactModificationTests extends TestBase {
     @BeforeMethod
     public void createContactIfDoesNotExist() {
         if (!app.getContactHelper().isAnyContactExists()) {
-            ContactData contact = new ContactData("modified", "modified", "modified2","asd", "sdads");
+            ContactData contact = new ContactData(0, "test1", "test2","test3", "test4");
             app.getContactHelper().createContact(contact);
         }
     }
