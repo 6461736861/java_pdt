@@ -20,7 +20,7 @@ public class ContactData {
     }
 
     public ContactData(String name, String surname, String nickname, String title, String companyName, String email) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE;
         this.name = name;
         this.surname = surname;
         this.nickname = nickname;
@@ -97,24 +97,11 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-        return email != null ? email.equals(that.email) : that.email == null;
+        return name != null ? name.equals(that.name) : that.name == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
+        return name != null ? name.hashCode() : 0;
     }
 }

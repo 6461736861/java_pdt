@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
 import pdt.addressbook.models.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
@@ -17,14 +18,9 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void createContactTest() {
-       // ContactData contact = new ContactData(null, null, null, null);
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().initCreateContact();
-        ContactData contact = new ContactData(0, "test1", "test2","test3", "test4");
-//        ContactData contact = new ContactData(String.format("Name%s", UUID.randomUUID()),
-//                String.format("Surname%s", UUID.randomUUID()),
-//                String.format("email%s@gmail.com", UUID.randomUUID()),
-//                String.format("Title%s", UUID.randomUUID()));
+        ContactData contact = new ContactData(0, "test1", "test2", "test3", "test4");
         app.getContactHelper().fillContact(contact);
         app.getContactHelper().saveContact();
 
@@ -35,17 +31,10 @@ public class ContactCreationTests extends TestBase {
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() + 1);
-
-        int max = 0;
-        for(ContactData c: after){
-            if(c.getId() > max){
-              max = c.getId();
-            }
-        }
-        contact.setId(max);
         before.add(contact);
-        Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
-
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+        before.sort(byId);
+        after.sort(byId);
+        Assert.assertEquals(before, after);
     }
-
 }

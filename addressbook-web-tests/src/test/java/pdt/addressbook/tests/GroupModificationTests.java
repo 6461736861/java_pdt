@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pdt.addressbook.models.GroupData;
 
 import java.security.acl.Group;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
@@ -41,7 +42,10 @@ public class GroupModificationTests extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(group);
-        Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
+        Comparator<?super GroupData> byID = (g1, g2) -> Integer.compare(g1.getId() , g2.getId());
+        before.sort(byID);
+        after.sort(byID);
+        Assert.assertEquals(before, after);
     }
 
     @BeforeMethod
