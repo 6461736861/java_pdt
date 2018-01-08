@@ -1,7 +1,7 @@
 package pdt.addressbook.models;
 
 public class ContactData {
-    public int id;
+    public int id = Integer.MAX_VALUE;
     public String name;
     public String surname;
     public String nickname;
@@ -9,48 +9,43 @@ public class ContactData {
     public String companyName;
     public String email;
 
-    public ContactData(int id, String name, String surname, String nickname, String title, String companyName, String email) {
+    public ContactData withId(int id) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.nickname = nickname;
-        this.title = title;
-        this.companyName = companyName;
-        this.email = email;
-    }
-
-    public ContactData(String name, String surname, String nickname, String title, String companyName, String email) {
-        this.id = Integer.MAX_VALUE;
-        this.name = name;
-        this.surname = surname;
-        this.nickname = nickname;
-        this.title = title;
-        this.companyName = companyName;
-        this.email = email;
-    }
-
-    public ContactData(String name, String surname, String email, String title) {
-        this.id = 0;
-        this.name = name;
-        this.surname = surname;
-        this.email = nickname;
-        this.title = title;
-    }
-
-    public ContactData(int id, String name, String surname, String email, String title) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = nickname;
-        this.title = title;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        return this;
     }
 
     public int getId() {
         return id;
+    }
+
+    public ContactData withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ContactData withSurname(String surname) {
+        this.surname = surname;
+        return this;
+    }
+
+    public ContactData withNickName(String nickname) {
+        this.nickname = nickname;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+    public ContactData withCompanyName(String companyName) {
+        this.companyName = companyName;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
     }
 
     public String getName() {

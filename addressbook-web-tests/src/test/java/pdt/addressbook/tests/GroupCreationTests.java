@@ -12,7 +12,7 @@ import java.util.List;
 
 public class GroupCreationTests extends TestBase {
 
-    @Test
+    @Test(alwaysRun=false)
     public void testCreateGroup() {
         GroupData group = new GroupData().withName("test2");
         app.goTo().groupPage();

@@ -57,7 +57,6 @@ public class ContactHelper extends BaseHelper {
     }
 
     public void delete() {
-        // new WebDriverWait(wd, 5).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//td[.='DeleteCustomer']"), "DeleteCustomer"));
         click(By.name("selected[]"));
         click(By.xpath("//input[@value='Delete']"));
     }
@@ -85,10 +84,10 @@ public class ContactHelper extends BaseHelper {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
         for (WebElement element : elements) {
+            String name = element.getText();
+            String surname = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            //String id = element.findElement(By.tagName("input")).getAttribute("id");
-            ContactData contact = new ContactData(0, "test1", "test2","test3", "test4");
-            contacts.add(contact);
+            contacts.add(new ContactData().withId(id).withName(name));
         }
         return contacts;
     }

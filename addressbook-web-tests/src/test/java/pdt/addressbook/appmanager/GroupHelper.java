@@ -71,8 +71,6 @@ public class GroupHelper extends BaseHelper {
         initGroupModification();
         fillGroupForm(group);
         submitGroupModification();
-//        WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);
-//        new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group record has been updated.\n" + "return to the group page"));
         goToGroupPage();
     }
 
@@ -86,9 +84,6 @@ public class GroupHelper extends BaseHelper {
         for (WebElement element : elements) {
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-           // GroupData group = new GroupData().withId(id).withName(name);
-//            String id = element.findElement(By.tagName("input")).getAttribute("value");
-//            GroupData group = new GroupData("test1", "test2", "test3");
             groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;

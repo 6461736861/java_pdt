@@ -16,10 +16,9 @@ public class ContactDeletionTests extends TestBase {
     @BeforeMethod
     public void createContactIfDoesNotExist() {
         if (!app.contact().isAnyContactExists()) {
-            ContactData contact = new ContactData(String.format("Name%s", UUID.randomUUID()),
-                    String.format("Surname%s", UUID.randomUUID()),
-                    String.format("email%s@gmail.com", UUID.randomUUID()),
-                    String.format("Title%s", UUID.randomUUID()));
+            ContactData contact = new ContactData().
+                    withName(String.format("Name%s", UUID.randomUUID()));
+                   // withSurname(String.format("Surname%s", UUID.randomUUID()));
             app.contact().create(contact);
         }
     }

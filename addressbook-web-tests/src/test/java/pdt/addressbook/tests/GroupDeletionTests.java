@@ -22,7 +22,7 @@ public class GroupDeletionTests extends TestBase {
         }
     }
 
-    @Test
+    @Test(alwaysRun=false)
     public void testDeleteGroup() {
         app.goTo().groupPage();
         List<GroupData> before = app.group().groupList();

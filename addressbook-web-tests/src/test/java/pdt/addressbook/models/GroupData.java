@@ -1,4 +1,5 @@
 package pdt.addressbook.models;
+
 public class GroupData {
     private int id = Integer.MAX_VALUE;
     public String group_name;
