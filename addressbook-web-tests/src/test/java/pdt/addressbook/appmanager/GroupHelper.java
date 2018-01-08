@@ -1,14 +1,8 @@
 package pdt.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.SkipException;
 import pdt.addressbook.models.GroupData;
 
 import java.util.ArrayList;
@@ -25,7 +19,7 @@ public class GroupHelper extends BaseHelper {
         super(wd);
     }
 
-    public void returnToGroupPage() {
+    public void goToGroupPage() {
         click(By.linkText("group page"));
     }
 
@@ -43,7 +37,7 @@ public class GroupHelper extends BaseHelper {
         click(name("new"));
     }
 
-    public void deleteSelectedGroups() {
+    public void deleteSelected() {
         click(name("delete"));
     }
 
@@ -66,21 +60,36 @@ public class GroupHelper extends BaseHelper {
 
     }
 
+    public void create(GroupData group) {
+        initGroup();
+        fillGroupForm(group);
+        submitGroupCreation();
+    }
+
+    public void modifyGroup(int index, GroupData group) {
+        selectGroup(index);
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+//        WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);
+//        new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group record has been updated.\n" + "return to the group page"));
+        goToGroupPage();
+    }
 
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<GroupData> getGroupList() {
+    public List<GroupData> groupList() {
         List<GroupData> groups = new ArrayList<GroupData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element : elements) {
             String name = element.getText();
-             String id = element.findElement(By.tagName("input")).getAttribute("value");
-             GroupData group = new GroupData(0,"test1", "test2", "test3");
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+           // GroupData group = new GroupData().withId(id).withName(name);
 //            String id = element.findElement(By.tagName("input")).getAttribute("value");
 //            GroupData group = new GroupData("test1", "test2", "test3");
-            groups.add(group);
+            groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
     }

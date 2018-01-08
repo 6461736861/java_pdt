@@ -1,59 +1,32 @@
-//package pdt.addressbook.models;
-//
-//public class GroupData {
-//    private final String groupName;
-//    private final String groupHeader;
-//    private final String groupFooter;
-//
-//    public GroupData(String groupName, String groupHeader, String groupFooter) {
-//        this.groupName = groupName;
-//        this.groupHeader = groupHeader;
-//        this.groupFooter = groupFooter;
-//    }
-//
-//    public String getGroupName() {
-//        return groupName;
-//    }
-//
-//    public String getGroupHeader() {
-//        return groupHeader;
-//    }
-//
-//    public String getGroupFooter() {
-//        return groupFooter;
-//    }
-//}
-
 package pdt.addressbook.models;
-
-import java.util.UUID;
-
 public class GroupData {
-    public int id;
+    private int id = Integer.MAX_VALUE;
     public String group_name;
     public String group_header;
     public String group_footer;
-
-    public GroupData(String group_name, String group_header, String group_footer) {
-        this.id = Integer.MAX_VALUE;
-        this.group_name = group_name;
-        this.group_header = group_header;
-        this.group_footer = group_footer;
-    }
-
-    public GroupData(int id, String group_name, String group_header, String group_footer) {
-        this.id = id;
-        this.group_name = group_name;
-        this.group_header = group_header;
-        this.group_footer = group_footer;
-    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public GroupData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public GroupData withName(String group_name) {
+        this.group_name = group_name;
+        return this;
+    }
+
+    public GroupData withHeader(String group_header) {
+        this.group_header = group_header;
+        return this;
+    }
+
+    public GroupData withFooters(String group_footer) {
+        this.group_footer = group_footer;
+        return this;
     }
 
     public String getGroup_name() {
@@ -90,5 +63,4 @@ public class GroupData {
                 ", group_name='" + group_name + '\'' +
                 '}';
     }
-
 }

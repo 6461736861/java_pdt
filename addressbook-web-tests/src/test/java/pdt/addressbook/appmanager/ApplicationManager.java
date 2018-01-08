@@ -44,8 +44,8 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
-        wd.get("http://localhost:81/addressbook/");
-        //wd.get("http://localhost/addressbook/");
+      //  wd.get("http://localhost:81/addressbook/");
+        wd.get("http://localhost/addressbook/");
         sessionHelper.login("admin", "secret");
     }
 
@@ -54,11 +54,11 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
@@ -66,7 +66,7 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 }

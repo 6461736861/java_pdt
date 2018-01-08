@@ -4,11 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pdt.addressbook.models.ContactData;
-import pdt.addressbook.models.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by rb on 12/10/17.
@@ -36,7 +34,7 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void fillContact(ContactData contact) {
+    public void fill(ContactData contact) {
         typeFieldValue(By.name("firstname"), contact.name);
         typeFieldValue(By.name("lastname"), contact.surname);
         typeFieldValue(By.name("nickname"), contact.nickname);
@@ -54,24 +52,24 @@ public class ContactHelper extends BaseHelper {
 
     }
 
-    public void saveContactChanges() {
+    public void saveChanges() {
         click(By.name("update"));
     }
 
-    public void deleteContact() {
+    public void delete() {
         // new WebDriverWait(wd, 5).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//td[.='DeleteCustomer']"), "DeleteCustomer"));
         click(By.name("selected[]"));
         click(By.xpath("//input[@value='Delete']"));
     }
 
-    public void saveContact() {
+    public void save() {
         click(By.name("submit"));
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         this.initCreateContact();
-        this.fillContact(contact);
-        this.saveContact();
+        this.fill(contact);
+        this.save();
 
     }
 
@@ -83,7 +81,7 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> contactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
         for (WebElement element : elements) {

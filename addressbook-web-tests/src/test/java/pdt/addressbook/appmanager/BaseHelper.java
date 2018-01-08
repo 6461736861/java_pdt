@@ -38,7 +38,7 @@ public class BaseHelper {
         }
     }
 
-    public void submitDeletionContact() {
+    public void submit() {
         wd.switchTo().alert().accept();
     }
 }
