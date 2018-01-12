@@ -20,7 +20,7 @@ public class GroupModificationTests extends TestBase {
         }
     }
 
-    @Test(alwaysRun=false)
+    @Test(alwaysRun=true)
     public void testGroupModification() {
         app.goTo().groupPage();
         Set<GroupData> before = app.group().all();
@@ -28,7 +28,7 @@ public class GroupModificationTests extends TestBase {
         GroupData group = new GroupData().
                 withId(modifiedGroup.getId()).withName("test1").withFooters("test2").withHeader("test3");
         app.group().modifyGroup(group);
-        List<GroupData> after = app.group().groupList();
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(before.size(), after.size());
         before.remove(modifiedGroup);
         before.add(group);

@@ -29,14 +29,6 @@ public class ContactModificationTests extends TestBase {
 
         webDriverWait.withMessage("User is not redirected to the homepage");
         webDriverWait.until(ExpectedConditions.urlContains("index.php"));
-//        List<ContactData> after = app.contact().contactList();
-//
-//        before.remove(index);
-//        before.add(contact);
-//        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-//        before.sort(byId);
-//        after.sort(byId);
-//        Assert.assertEquals(before, after);
         List<ContactData> after = app.contact().contactList();
         Assert.assertEquals(before.size(), after.size());
 
