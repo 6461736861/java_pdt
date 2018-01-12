@@ -49,12 +49,15 @@ public class GroupData {
 
         GroupData groupData = (GroupData) o;
 
+        if (id != groupData.id) return false;
         return group_name != null ? group_name.equals(groupData.group_name) : groupData.group_name == null;
     }
 
     @Override
     public int hashCode() {
-        return group_name != null ? group_name.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (group_name != null ? group_name.hashCode() : 0);
+        return result;
     }
 
     @Override

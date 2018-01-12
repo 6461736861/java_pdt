@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pdt.addressbook.models.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 
 public class GroupDeletionTests extends TestBase {
@@ -22,22 +23,16 @@ public class GroupDeletionTests extends TestBase {
         }
     }
 
-    @Test(alwaysRun=false)
+    @Test(alwaysRun=true)
     public void testDeleteGroup() {
         app.goTo().groupPage();
-        List<GroupData> before = app.group().groupList();
-        app.group().selectGroup(before.size() - 1);
-        app.group().deleteSelected();
-        WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);
-        new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Group has been removed.\n" + "return to the group page"));
-
-        app.group().goToGroupPage();
-        webDriverWait.withMessage("User is not redirected to the group page");
-        webDriverWait.until(ExpectedConditions.urlContains("group.php"));
-        List<GroupData> after = app.group().groupList();
+        Set<GroupData> before = app.group().all();
+        GroupData deletedGroup = before.iterator().next();
+        app.group().delete(deletedGroup);
+       // app.group().goToGroupPage();
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(after.size(), before.size() - 1);
-
-        before.remove(before.size() - 1);
+        before.remove(deletedGroup);
         Assert.assertEquals(before, after);
 
     }

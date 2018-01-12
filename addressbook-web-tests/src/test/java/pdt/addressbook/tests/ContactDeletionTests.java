@@ -38,7 +38,6 @@ public class ContactDeletionTests extends TestBase {
         Assert.assertEquals(after.size(), before.size() - 1);
 
         before.remove(before.size() - 1);
-        //check that lists before and after are equals
         Assert.assertEquals(before, after);
     }
 }
