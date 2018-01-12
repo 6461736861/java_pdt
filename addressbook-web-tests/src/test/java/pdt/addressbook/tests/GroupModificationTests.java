@@ -7,6 +7,7 @@ import pdt.addressbook.models.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
 
@@ -22,19 +23,15 @@ public class GroupModificationTests extends TestBase {
     @Test(alwaysRun=false)
     public void testGroupModification() {
         app.goTo().groupPage();
-        List<GroupData> before = app.group().groupList();
-        int index = before.size() - 1;
+        Set<GroupData> before = app.group().all();
+        GroupData modifiedGroup = before.iterator().next();
         GroupData group = new GroupData().
-                withId(before.get(index).getId()).withName("test1").withFooters("test2").withHeader("test3");
-        app.group().modifyGroup(index, group);
+                withId(modifiedGroup.getId()).withName("test1").withFooters("test2").withHeader("test3");
+        app.group().modifyGroup(group);
         List<GroupData> after = app.group().groupList();
         Assert.assertEquals(before.size(), after.size());
-
-        before.remove(index);
+        before.remove(modifiedGroup);
         before.add(group);
-        Comparator<? super GroupData> byID = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-        before.sort(byID);
-        after.sort(byID);
         Assert.assertEquals(before, after);
     }
 }
