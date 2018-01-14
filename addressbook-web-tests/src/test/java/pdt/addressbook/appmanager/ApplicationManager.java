@@ -2,15 +2,7 @@ package pdt.addressbook.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import pdt.addressbook.tests.TestBase;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,14 +21,6 @@ public class ApplicationManager {
     }
 
     public void init() {
-//        if (Objects.equals(browser, BrowserType.CHROME)) {
-//            wd = new ChromeDriver();
-//        } else if (Objects.equals(browser, BrowserType.FIREFOX)) {
-//            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("/usr/lib/firefox-esr/firefox-esr"));
-//        } else if (Objects.equals(browser, BrowserType.SAFARI)) {
-//            wd = new SafariDriver();
-//        }
-
         System.setProperty("webdriver.gecko.driver", "/Users/rb/java_pdt/addressbook-web-tests/geckodriver");
         wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -44,8 +28,8 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
-      //  wd.get("http://localhost:81/addressbook/");
-        wd.get("http://localhost/addressbook/");
+        wd.get("http://localhost:81/addressbook/");
+        // wd.get("http://localhost/addressbook/");
         sessionHelper.login("admin", "secret");
     }
 

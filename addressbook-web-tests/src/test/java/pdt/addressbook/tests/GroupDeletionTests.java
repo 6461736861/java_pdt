@@ -1,14 +1,10 @@
 package pdt.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.GroupData;
 
-import java.util.List;
 import java.util.Set;
 
 
