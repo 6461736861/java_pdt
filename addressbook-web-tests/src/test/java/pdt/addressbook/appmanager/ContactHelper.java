@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pdt.addressbook.models.ContactData;
+import pdt.addressbook.models.Contacts;
 import pdt.addressbook.models.GroupData;
 
 import java.util.ArrayList;
@@ -88,20 +89,20 @@ public class ContactHelper extends BaseHelper {
         return !wd.findElement(By.id("search_count")).getText().contains("0");
     }
 
-    public List<ContactData> contactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
-        for (WebElement element : elements) {
-            String name = element.findElement(By.xpath(".//td[3]")).getText();
-            String lastname = element.findElement(By.xpath(".//td[2]")).getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-            contacts.add(new ContactData().withId(id).withName(name).withSurname(lastname));
-        }
-        return contacts;
-    }
+//    public List<ContactData> contactList() {
+//        List<ContactData> contacts = new ArrayList<ContactData>();
+//        List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
+//        for (WebElement element : elements) {
+//            String name = element.findElement(By.xpath(".//td[3]")).getText();
+//            String lastname = element.findElement(By.xpath(".//td[2]")).getText();
+//            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+//            contacts.add(new ContactData().withId(id).withName(name).withSurname(lastname));
+//        }
+//        return contacts;
+//    }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
         for (WebElement element : elements) {
             String name = element.findElement(By.xpath(".//td[3]")).getText();
