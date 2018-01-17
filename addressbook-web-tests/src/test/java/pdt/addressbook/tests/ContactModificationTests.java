@@ -7,28 +7,24 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pdt.addressbook.models.ContactData;
+import pdt.addressbook.models.Contacts;
 
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModitication() {
-        Set<ContactData> before = app.contact().all();
+        Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("modified!!!!!").withSurname("surname");
         app.contact().modify(contact);
-        WebDriverWait webDriverWait = new WebDriverWait(app.wd, 5);
-        new WebDriverWait(app.wd, 5).until(ExpectedConditions.textToBe(By.className("msgbox"), "Address book updated\n" + "return to home page"));
 
-        webDriverWait.withMessage("User is not redirected to the homepage");
-        webDriverWait.until(ExpectedConditions.urlContains("index.php"));
-        Set<ContactData> after = app.contact().all();
-        Assert.assertEquals(before.size(), after.size());
-        before.remove(modifiedContact);
-        before.add(contact);
-        Assert.assertEquals(before, after);
+        Contacts after = app.contact().all();
+        assertThat(after.size(), equalTo(before.size()));
+        assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 
     @BeforeMethod
