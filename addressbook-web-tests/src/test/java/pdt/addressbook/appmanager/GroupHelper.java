@@ -99,4 +99,8 @@ public class GroupHelper extends BaseHelper {
         goToGroupPage();
 
     }
+
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }
