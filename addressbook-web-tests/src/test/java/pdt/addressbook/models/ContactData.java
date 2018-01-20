@@ -91,6 +91,10 @@ public class ContactData {
         return this;
     }
 
+    public String getAllPhones() {
+        return allPhones;
+    }
+
     public String getAddress() {
         return address;
     }

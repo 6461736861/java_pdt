@@ -114,7 +114,8 @@ public class ContactHelper extends BaseHelper {
             String[] phones = allPhones.split("\n");
             contactCache.add(new ContactData().withId(id).withName(firstname).withSurname(surname)
                     .withaddress(address)
-                    .withHomephone(phones[0]).withmobile(phones[1]).withwork(phones[2]));//.withAllPhones(allPhones)
+                    .withAllPhones(allPhones));
+                   // .withHomephone(phones[0]).withmobile(phones[1]).withwork(phones[2]));//.withAllPhones(allPhones)
                 //    .withAllEmails(allEmails));
         }
         return new Contacts(contactCache);
