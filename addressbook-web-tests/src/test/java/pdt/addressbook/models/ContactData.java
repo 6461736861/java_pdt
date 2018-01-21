@@ -95,6 +95,11 @@ public class ContactData {
         return allPhones;
     }
 
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+
     public String getAddress() {
         return address;
     }
