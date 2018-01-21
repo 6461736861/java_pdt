@@ -145,6 +145,26 @@ public class ContactData {
     }
 
     @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", homephone='" + homephone + '\'' +
+                ", work='" + work + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", address='" + address + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", title='" + title + '\'' +
+                ", email='" + email + '\'' +
+                ", email2='" + email2 + '\'' +
+                ", email3='" + email3 + '\'' +
+                ", allPhones='" + allPhones + '\'' +
+                ", allEmails='" + allEmails + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -155,14 +175,14 @@ public class ContactData {
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
         if (homephone != null ? !homephone.equals(that.homephone) : that.homephone != null) return false;
+        if (work != null ? !work.equals(that.work) : that.work != null) return false;
+        if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
         if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
-        if (work != null ? !work.equals(that.work) : that.work != null) return false;
-        if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
         if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
         return allEmails != null ? allEmails.equals(that.allEmails) : that.allEmails == null;
     }
@@ -173,36 +193,17 @@ public class ContactData {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (homephone != null ? homephone.hashCode() : 0);
+        result = 31 * result + (work != null ? work.hashCode() : 0);
+        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (email2 != null ? email2.hashCode() : 0);
         result = 31 * result + (email3 != null ? email3.hashCode() : 0);
-        result = 31 * result + (work != null ? work.hashCode() : 0);
-        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
         result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
         result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", homephone='" + homephone + '\'' +
-                ", address='" + address + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", title='" + title + '\'' +
-                ", email='" + email + '\'' +
-                ", email2='" + email2 + '\'' +
-                ", email3='" + email3 + '\'' +
-                ", work='" + work + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", allPhones='" + allPhones + '\'' +
-                ", allEmails='" + allEmails + '\'' +
-                '}';
-    }
 }
