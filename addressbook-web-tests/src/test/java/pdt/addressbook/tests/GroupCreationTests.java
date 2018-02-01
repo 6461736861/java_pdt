@@ -9,16 +9,21 @@ import pdt.addressbook.models.Groups;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.io.*;
 import java.util.*;
 
 public class GroupCreationTests extends TestBase {
 
     @DataProvider
-    public Iterator<Object[]> validGroups() {
+    public Iterator<Object[]> validGroups() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add(new Object[]{new GroupData().withName("test1").withFooters("footer1").withHeader("header1")});
-        list.add(new Object[]{new GroupData().withName("test2").withFooters("footer2").withHeader("header2")});
-        list.add(new Object[]{new GroupData().withName("test3").withFooters("footer3").withHeader("header3")});
+        BufferedReader reader = new BufferedReader(new FileReader("scr/test/resources/groups.csv"));
+        String line = reader.readLine();
+        while (line != null) {
+            String[] split = line.split(";");
+            list.add(new Object[]{new GroupData().withName(split[0]).withFooters(split[1]).withHeader(split[2])});
+            line = reader.readLine();
+        }
         return list.iterator();
     }
 
