@@ -1,27 +1,20 @@
 package pdt.addressbook.generators;
 
-import com.sun.javafx.binding.StringFormatter;
 import pdt.addressbook.models.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by rb on 2/1/18.
- */
 public class GroupDataGenerator {
     public static void main(String[] args) throws IOException {
         int count = Integer.parseInt(args[0]);
         File file = new File(args[1]);
         List<GroupData> groups = generateGroups(count);
         save(groups, file);
-
-
     }
 
     private static void save(List<GroupData> groups, File file) throws IOException {
