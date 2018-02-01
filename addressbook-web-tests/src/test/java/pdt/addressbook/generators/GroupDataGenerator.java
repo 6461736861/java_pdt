@@ -3,6 +3,9 @@ package pdt.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.thoughtworks.xstream.XStream;
 import pdt.addressbook.models.GroupData;
 
 import java.io.File;
@@ -20,6 +23,9 @@ public class GroupDataGenerator {
     @Parameter(names = "-f", description = "Target file")
     public String file;
 
+    @Parameter(names = "-d", description = "Data format")
+    public String format;
+
     public static void main(String[] args) throws IOException {
         GroupDataGenerator generator = new GroupDataGenerator();
         JCommander jCommander = new JCommander(generator);
@@ -34,7 +40,19 @@ public class GroupDataGenerator {
 
     private void run() throws IOException {
         List<GroupData> groups = generateGroups(count);
-        save(groups, new File(file));
+        if(format.equals("json")){
+            saveAsJson(groups, new File(file));
+        }else
+        System.out.println ("Unrecognised format" + format);
+      //  saveAsJson(groups, new File(file));
+    }
+
+    private void saveAsJson(List<GroupData> groups, File file) throws IOException {
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String json = gson.toJson(groups);
+      Writer writer = new FileWriter(file);
+      writer.write(json);
+      writer.close();
     }
 
     private void save(List<GroupData> groups, File file) throws IOException {
