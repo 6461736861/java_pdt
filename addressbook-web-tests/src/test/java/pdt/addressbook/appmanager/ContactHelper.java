@@ -33,6 +33,7 @@ public class ContactHelper extends BaseHelper {
         typeFieldValue(By.name("title"), contact.title);
         typeFieldValue(By.name("company"), contact.companyName);
         typeFieldValue(By.name("email"), contact.email);
+        attach(By.name("photo"), contact.photo);
     }
 
     public void modifyContactById(int id) {
