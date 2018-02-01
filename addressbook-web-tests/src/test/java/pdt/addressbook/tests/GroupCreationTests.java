@@ -22,6 +22,7 @@ public class GroupCreationTests extends TestBase {
         while (line != null) {
             String[] split = line.split(";");
             list.add(new Object[]{new GroupData().withName(split[0]).withFooters(split[1]).withHeader(split[2])});
+          //  list.add(new Object[]{new GroupData().withName(split[0]).withFooters(split[1]).withHeader(split[2])});
             line = reader.readLine();
         }
         return list.iterator();

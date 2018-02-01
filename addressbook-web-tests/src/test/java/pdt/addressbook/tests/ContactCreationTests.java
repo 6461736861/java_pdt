@@ -23,7 +23,7 @@ public class ContactCreationTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        BufferedReader reader = new BufferedReader(new FileReader("/Users/rb/java_pdt/addressbook-web-tests/src/test/resources/contacts.csv"));
+        BufferedReader reader = new BufferedReader(new FileReader("/Users/rb/java_pdt/addressbook-web-tests/src/test/resources/contacts.json"));
         String line = reader.readLine();
         while (line != null) {
             String[] split = line.split(";");
