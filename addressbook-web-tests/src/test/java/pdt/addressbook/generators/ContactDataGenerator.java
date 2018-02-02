@@ -6,7 +6,6 @@ import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import pdt.addressbook.models.ContactData;
-import pdt.addressbook.models.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
