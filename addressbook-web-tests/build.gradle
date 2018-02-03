@@ -15,6 +15,11 @@ dependencies {
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile 'com.eclipsesource.minimal-json:minimal-json:0.9.5'
 }
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+}
 
 
 
