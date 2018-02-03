@@ -50,18 +50,18 @@ public class GroupDataGenerator {
     private void saveAsJson(List<GroupData> groups, File file) throws IOException {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
       String json = gson.toJson(groups);
-      Writer writer = new FileWriter(file);
-      writer.write(json);
-      writer.close();
+      try (Writer writer = new FileWriter(file)) {
+          writer.write(json);
+      }
     }
 
     private void save(List<GroupData> groups, File file) throws IOException {
         System.out.println(new File(".").getAbsolutePath());
-        Writer writer = new FileWriter(file);
-        for (GroupData group : groups) {
-            writer.write(String.format("%s; %s; %s\n", group.getGroup_name(), group.getGroup_footer(), group.getGroup_header()));
+        try( Writer writer = new FileWriter(file)) {
+            for (GroupData group : groups) {
+                writer.write(String.format("%s; %s; %s\n", group.getGroup_name(), group.getGroup_footer(), group.getGroup_header()));
+            }
         }
-        writer.close();
     }
 
     private List<GroupData> generateGroups(int count) {
